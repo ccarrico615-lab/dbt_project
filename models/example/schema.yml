@@ -19,3 +19,15 @@ models:
             tests:
                 - unique
                 - not_null
+
+sources:
+  - name: dod_raw
+    database: dbtdod
+    schema: dod
+    tables:
+      - name: dod_workout
+        description: "Individual workouts by date, calories burned, volume lifted, and time"
+      - name: dod_steps
+        description: "Number of steps taken by date"
+      - name: dim_date
+        description: "Date table to track weeks and months"
