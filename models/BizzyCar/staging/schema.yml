@@ -2,7 +2,7 @@
 version: 2
 
 models:
-  - name: stg_dealership
+  - name: stg_dealerships
     description: "Staged, cleaned dealership listings"
     columns:
       - name: dealership_id
@@ -13,7 +13,7 @@ models:
   - name: stg_sales
     description: "Staged, cleaned sales listings"
     columns:
-      - name: sales_id
+      - name: sale_id
         description: "Primary key"
         tests:
           - unique
@@ -26,16 +26,3 @@ models:
         tests:
           - unique
           - not_null
-
-
-sources:
-  - name: bizzycar_raw
-    database: bizzycar
-    schema: interview
-    tables:
-      - name: DEALERSHIPS
-        description: "List of dealerships and their regions"
-      - name: SALES
-        description: "One record for each sale along with the vehicle id, price and date sold"
-      - name: VEHICLE
-        description: "List of vehicle attributes, list date, and the dealership id"

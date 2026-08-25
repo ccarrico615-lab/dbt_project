@@ -22,9 +22,10 @@ SELECT
 
 from
     {{ ref('sale_calcs') }}  sale
-    inner join {{ ref('vehicle_dol') }}  veh
+    inner join {{ ref('vehicle_dol') }}  veh --using an inner join here because a sale is only valid if we know the vehicle sold
         on sale.vehicle_id = veh.vehicle_id
-    inner join {{ ref('stg_dealerships') }}  dlrshp
+        and sale.sale_id = veh.sale_id
+    left join {{ ref('stg_dealerships') }}  dlrshp  --left joining here because we don't want to lose visibility on a sale if the dealership id is missing
         on veh.dealership_id = dlrshp.dealership_id
 
 

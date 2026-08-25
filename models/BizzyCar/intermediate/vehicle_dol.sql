@@ -1,13 +1,15 @@
-SELECT
+SELECT    
     veh.vehicle_id,
+    sale.sale_id, --it's possible one of these vehicles could sell multiple times. Pull this in to join on later
+    case when sale.sale_id is null then "Available" else "Sold" end as sale_status,
     veh.make,
     veh.model,
     veh.year,
     veh.vin,
     veh.mileage,
-    veh.dealership_id,
     veh.date_listed,
-    sale.date_sold - veh.date_listed as days_on_lot
+    date_diff(coalesce(sale.date_sold,current_date), veh.date_listed, day) as days_on_lot, -- grab the difference between date_listed and current date in case user wants to see how long the car has been sitting unsold
+    veh.dealership_id
 FROM
     {{ ref('stg_vehicle') }} veh
     left join {{ ref('stg_sales') }} sale
