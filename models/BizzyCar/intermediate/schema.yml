@@ -4,5 +4,22 @@ version: 2
 models:
   - name: sale_calcs
     description: "Sales data with date and discount calculations"
+    columns:
+      - name: sale_id
+        description: "Primary key — one row per sale"
+        tests:
+          - unique
+          - not_null
+
   - name: vehicle_dol
     description: "Vehicle data with days on lot calc"
+    columns:
+      - name: vehicle_id
+        description: "Foreign key to vehicle. Could be listed multiple times if vehicle has sold multiple times"
+      - name: sale_id
+        description: "Foreign key to sale, nullable if vehicle hasn't sold yet"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - vehicle_id
+            - sale_id

@@ -4,3 +4,9 @@ version: 2
 models:
   - name: sale_fact
     description: "Sales data with date/discount calcs and vehicle and dealership info"
+    columns:
+      - name: sale_id
+        description: "Primary key — one row per sale"
+        tests:
+          - unique
+          - not_null
