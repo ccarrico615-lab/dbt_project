@@ -15,9 +15,9 @@ models:
     description: "Vehicle data with days on lot calc"
     columns:
       - name: vehicle_id
-        description: "Foreign key to vehicle. Could be listed multiple times if vehicle has sold multiple times"
+        description: "Foreign key to stg_vehicle. Could be listed multiple times if vehicle has sold multiple times"
       - name: sale_id
-        description: "Foreign key to sale, nullable if vehicle hasn't sold yet"
+        description: "Foreign key to stg_sales, nullable if vehicle hasn't sold yet"
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
