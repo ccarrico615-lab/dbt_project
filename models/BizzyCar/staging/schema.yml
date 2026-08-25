@@ -1,0 +1,41 @@
+
+version: 2
+
+models:
+  - name: stg_dealership
+    description: "Staged, cleaned dealership listings"
+    columns:
+      - name: dealership_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+  - name: stg_sales
+    description: "Staged, cleaned sales listings"
+    columns:
+      - name: sales_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+  - name: stg_vehicle
+    description: "Staged, cleaned vehicle listings"
+    columns:
+      - name: vehicle_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+
+
+sources:
+  - name: bizzycar_raw
+    database: bizzycar
+    schema: interview
+    tables:
+      - name: DEALERSHIPS
+        description: "List of dealerships and their regions"
+      - name: SALES
+        description: "One record for each sale along with the vehicle id, price and date sold"
+      - name: VEHICLE
+        description: "List of vehicle attributes, list date, and the dealership id"

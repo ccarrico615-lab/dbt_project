@@ -1,0 +1,8 @@
+
+version: 2
+
+models:
+  - name: sale_calcs
+    description: "Sales data with date and discount calculations"
+  - name: vehicle_dol
+    description: "Vehicle data with days on lot calc"

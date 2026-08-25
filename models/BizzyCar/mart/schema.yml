@@ -1,0 +1,6 @@
+
+version: 2
+
+models:
+  - name: sale_fact
+    description: "Sales data with date/discount calcs and vehicle and dealership info"
